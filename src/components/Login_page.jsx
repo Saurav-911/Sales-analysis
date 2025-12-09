@@ -1,8 +1,14 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 export default function Login_page() {
   return (
     <div className="bg-gray-50">
+      <div className='flex justify-between p-4 bg-white border-b border-gray-200 position-fixed w-full '>
+        <div className='cursor-pointer'>
+          <Link className="nav-link " to="/" ><h2>Top bar</h2></Link>
+        </div>
+        
+      </div>
       <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
         <div className="max-w-[480px] w-full">
           
