@@ -1,27 +1,32 @@
-
 import './App.css'
 import Navigation from './components/Navigation'
-import Justlooking from './components/Justlooking.jsx'
 import Login_page from './components/Login_page.jsx'
 import Upload from './components/upload.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Product from './components/Product.jsx'
 import Dashboard from './components/Dashboard.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+
 function App() {
   return (
     <>
-    {/* <Navigation /> */}
       <Router>
-      
-      <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<Dashboard />} />
-          <Route exect path="Upload" element={<Upload/>} />
-          <Route exect path="Product" element={<Product/>} />
-        </Route>
-          <Route exect path="Login" element={<Login_page/>}/>
-      </Routes>
-    </Router>
+        <Routes>
+          {/* Public route - Login */}
+          <Route path="/login" element={<Login_page />} />
+          
+          {/* Protected routes - Require authentication */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Navigation />
+            </ProtectedRoute>
+          }>
+            <Route index element={<Dashboard />} />
+            <Route path="upload" element={<Upload />} />
+            <Route path="product" element={<Product />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   )
 }
